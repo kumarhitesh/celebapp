@@ -1,0 +1,91 @@
+<ion-content>
+  <div class="main-background" [style.background]="'url('+sessionData?.image+')'" [class.hideOverlay]="isVideoOn">
+
+    <div id="subscriber" class="subscriber"></div>
+    <div class="profile-details" [class.slideUp]="showProfileDetailsUp" [class.slideLeft]="showProfileDetailsLeft">
+      <button ion-button icon-only clear class="icon-btn toggle-btn mobile" (click)="toggleProfileDetailsUp()">
+        <ion-icon name="arrow-down"></ion-icon>
+      </button>
+      <button ion-button icon-only clear class="icon-btn toggle-btn desktop" (click)="toggleProfileDetailsLeft()">
+        <ion-icon name="arrow-back"></ion-icon>
+
+      </button>
+      <div class="profile-image" [style.background]="'url('+sessionData?.image+')'"></div>
+      <ul>
+        <li>
+          <ion-icon ios="ios-person" md="md-person"></ion-icon>
+          {{sessionData?.sessionName}}
+        </li>
+        <li>
+          <ion-icon ios="ios-locate" md="md-locate"></ion-icon>Wayzata, MN
+        </li>
+        <li>
+          <ion-icon ios="ios-timer" md="md-timer"></ion-icon> {{sessionData?.duration}} min.
+        </li>
+        <li>
+          <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
+          {{sessionData?.description}}
+        </li>
+      </ul>
+      <div class="call-btn" (click)="endCall(sessionData?.id)">
+        <button ion-button icon-only clear class="icon-btn">
+          <ion-icon ios="ios-call" md="md-call"></ion-icon>
+        </button>
+        <span class="text"> end call
+        </span>
+      </div>
+    </div>
+    <div class="controls" *ngIf="controle">
+      <ul>
+        <li>
+          <button ion-button icon-only clear class="icon-btn" (click)="toggleBookMarked()" [class.bookmarked]="isBookmarked">
+            <ion-icon ios="ios-bookmark" md="md-bookmark"></ion-icon>
+          </button>
+        </li>
+        <li>
+          <button ion-button color="light-green" class="mic" (click)="toggleMute()" [class.mic-off]="isMute">
+            <ion-icon ios="ios-mic" md="md-mic" *ngIf="!isMute"></ion-icon>
+            <ion-icon ios="ios-mic-off" md="md-mic-off" *ngIf="isMute"></ion-icon>
+          </button>
+
+          <button ion-button icon-only clear class="icon-btn profileDetails-btn" (click)="toggleProfileDetailsUp()">
+            <ion-icon name="arrow-up"></ion-icon>
+          </button>
+        </li>
+        <li>
+          <button ion-button icon-only clear class="icon-btn" [class.video-off]="isvideo" (click)="togglevideo()">
+            <ion-icon ios="ios-videocam" md="md-videocam"></ion-icon>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="caller-controls">
+    <div class="caller" [style.background]="'url('+sessionData?.image+')'" [class.highlightSpeaker]="highlightSpeaker">
+      <div id="publisher" class="publisher"></div>
+      <span class="ionc-box">
+        <ion-icon ios="ios-git-compare" md="md-git-compare"></ion-icon>
+      </span>
+    </div>
+    <div class="duration">
+      <span class="label">Call duration: </span>
+      <span class="time">
+
+        <label id="minutes">00</label>:
+        <label id="seconds">00</label>
+        <label>min</label>
+      </span>
+
+    </div>
+    <div class="timer">
+      <ion-icon ios="ios-stopwatch" md="md-stopwatch"></ion-icon>
+      <span class="time" id="time">00</span>
+      <span> min</span>
+    </div>
+  </div>
+  <div class="profile-details-toggler-desktop">
+    <button ion-button icon-only clear color="primary" class="icon-btn toggle-btn desktop" (click)="toggleProfileDetailsLeft()">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "celebritoneApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

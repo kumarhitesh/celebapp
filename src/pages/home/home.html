@@ -1,0 +1,36 @@
+<ion-content padding>
+
+  <h2 class="page-heading">Schedule </h2>
+  <ion-row>
+    <ion-col col-12 col-xl-3 col-lg-3 col-md-6 *ngFor="let data of sessions">
+      <ion-card class="custom-card">
+        <div class="image" [style.background]="'url('+data.image+')'">
+          <div class="status" *ngIf="data.expired">
+            <div class="status-label">CALL COMPLETED</div>
+          </div>
+        </div>
+        <ion-card-content>
+          <ion-card-title>
+            {{data.sessionName}}
+          </ion-card-title>
+          <p>
+            {{data.time | date : 'MMM d, y, h:mm a' }}
+          </p>
+          <button ion-button clear small>profile</button>
+          {{data.callEnable}}
+        </ion-card-content>
+      </ion-card>
+      <div class="btn-center call-btn" *ngIf="data.callEnabel">
+        <button ion-button small round (click)="goTotalkPage(data.id, data.tbSessionId,data.time,data.duration)">Start
+          Call
+        </button>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!-- <p>
+    <b>Important: </b>
+    You will need to download
+    <a href="https://play.google.com/store/apps/details?id=us.zoom.videomeetings&hl=en_IN " target="_blank ">zoom app</a> on your phone to access the video conferencing facility.
+  </p> -->
+</ion-content>
